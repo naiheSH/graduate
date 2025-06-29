@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长春职业技术大学商贸学院 - 毕业纪念册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> <!-- 引入书法字体 -->
+    <script>
+        // Tailwind配置
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF', // 深蓝色作为主色调
+                        secondary: '#F97316', // 橙色作为辅助色
+                        neutral: '#F3F4F6', // 浅灰色作为中性色
+                        accent: '#10B981', // 绿色作为强调色
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        calligraphy: ['"Ma Shan Zheng"', 'cursive'] // 添加书法字体
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fadeIn': 'fadeIn 1.5s ease-in-out',
+                        'fadeInUp': 'fadeInUp 1.5s ease-in-out',
+                        'slideIn': 'slideIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .timeline-line {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 100%;
+                width: 2px;
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+            .fixed-slider {
+                height: 400px;
+                overflow-y: auto;
+                scroll-snap-type: y mandatory;
+            }
+            .fixed-slider-item {
+                scroll-snap-align: start;
+            }
+            .logo-container {
+                transition: all 0.3s ease;
+            }
+            .logo-container:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .timeline-date {
+                transition: all 0.3s ease;
+            }
+            .timeline-date:hover {
+                transform: scale(1.05);
+                background-color: rgba(249, 115, 22, 0.9);
+            }
+            .hover-scale {
+                transition: transform 0.5s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .text-shadow-lg {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            }
+            .nav-fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 50;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral font-sans text-gray-800 overflow-x-hidden">
+    <!-- 背景音乐控制 -->
+                <audio id="backgroundMusic" loop autoplay>
+            <source src="mp3/music.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const audio = document.getElementById('backgroundMusic');
+                audio.play().catch(() => {
+                    // 如果自动播放失败，建议提示用户点击右下角音乐按钮开启
+                    // alert('浏览器限制自动播放，请点击右下角音乐按钮开启背景音乐');
+                });
+            });
+        </script>
+    </audio>
+    
+    <div class="fixed bottom-6 right-6 z-50 bg-primary/80 text-white p-3 rounded-full shadow-lg cursor-pointer backdrop-blur-md" onclick="toggleMusic()">
+        <i id="musicIcon" class="fa fa-music text-xl"></i>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="nav-fixed transition-all duration-300 bg-primary/90 backdrop-blur-md" id="mainNav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- 学校与学院logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md overflow-hidden">
+                    <!-- 长春职业技术大学logo -->
+                    <img src="images/university-logo.jpg" alt="长春职业技术大学" class="w-full h-full object-cover">
+                </div>
+                <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center shadow-md overflow-hidden">
+                    <!-- 商贸学院logo -->
+                    <img src="images/college-logo.jpg" alt="商贸学院" class="w-full h-full object-cover">
+                </div>
+                <div class="hidden sm:block text-white font-bold text-xl">
+                    <span class="text-secondary">商贸学院</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#intro" class="text-white hover:text-secondary transition-colors text-sm">学院寄语</a>
+                <a href="#timeline" class="text-white hover:text-secondary transition-colors text-sm">时光轴</a>
+                <a href="#gallery" class="text-white hover:text-secondary transition-colors text-sm">青春纪念册</a>
+                <a href="#photos" class="text-white hover:text-secondary transition-colors text-sm">校园风采</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menuBtn" class="text-white">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-primary/95 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#intro" class="text-white hover:text-secondary transition-colors py-2">学院寄语</a>
+                <a href="#timeline" class="text-white hover:text-secondary transition-colors py-2">时光轴</a>
+                <a href="#gallery" class="text-white hover:text-secondary transition-colors py-2">青春纪念册</a>
+                <a href="#photos" class="text-white hover:text-secondary transition-colors py-2">校园风采</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 顶部横幅 -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+        <div class="absolute inset-0 z-0">
+            <img src="images/campus.jpg" alt="校园风景" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-primary/40"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4">
+            <div class="animate-float">
+                <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white mb-6 text-shadow-lg">
+                    长春职业技术大学<br><span class="text-secondary">商贸学院</span>
+                </h1>
+            </div>
+            <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-white text-shadow max-w-3xl mx-auto mb-10 animate-[fadeIn_2.5s_ease-in-out]">
+                青春不散场 · 梦想正启航
+            </p>
+            <div class="animate-[fadeInUp_3s_ease-in-out]">
+                <a href="#intro" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                    开启回忆之旅
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fa fa-angle-down text-3xl"></i>
+        </div>
+    </header>
+
+    <!-- 学院寄语 -->
+    <section id="intro" class="py-20 px-4 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-10 left-10 w-64 h-64 rounded-full bg-primary/30 animate-float"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-secondary/30 animate-float-delay-2"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-12 text-center">学院寄语</h2>
+            
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="images/college.jpg" alt="学院照片" class="w-full h-auto rounded-xl shadow-xl hover-scale">
+                        <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg animate-float-delay-1">
+                            <div class="text-primary font-bold text-3xl">2024届</div>
+                            <div class="text-gray-600">毕业纪念</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-neutral p-8 rounded-xl shadow-lg">
+                        <p class="text-lg mb-6 leading-relaxed font-calligraphy text-xl">
+                            亲爱的同学们，当你们翻开这本纪念册时，相信心中一定充满了不舍与憧憬。在长春职业技术大学商贸学院的这段时光，是你们青春中最宝贵的记忆。
+                        </p>
+                        <p class="text-lg mb-6 leading-relaxed font-calligraphy text-xl">
+                            在这里，你们不仅收获了知识，更结识了志同道合的伙伴，经历了成长与蜕变。课堂上的专注、运动场上的拼搏、社团活动中的欢笑，都将成为你们人生中珍贵的片段。
+                        </p>
+                        <p class="text-lg leading-relaxed font-calligraphy text-xl">
+                            毕业不是结束，而是新的开始。愿你们带着在商贸学院学到的智慧与勇气，在人生的新征程上勇往直前，创造属于自己的辉煌！母校永远是你们的后盾，欢迎常回家看看。
+                        </p>
+                        <div class="mt-8 flex justify-end">
+                            <div class="text-right">
+                                <div class="text-primary font-semibold">—— 长春职业技术大学商贸学院 全体老师</div>
+                                <div class="text-gray-500 text-sm mt-1">2024年6月</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 校园时光轴 -->
+    <section id="timeline" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-white/30 animate-float"></div>
+            <div class="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-white/30 animate-float-delay-2"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4 text-center">校园时光轴</h2>
+            <p class="text-white/80 text-center max-w-2xl mx-auto mb-16">那些年，我们一起走过的青春岁月</p>
+            
+            <div class="relative">
+                <div class="timeline-line"></div>
+                
+                <!-- 时间点1 -->
+                <div class="relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">初入校园</h3>
+                                <p class="text-white/80">带着憧憬与忐忑，我们来到了长春职业技术大学，开始了大学生涯。军训的汗水，迎新晚会的热闹，都成为了难忘的回忆。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-secondary z-10 flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+                        
+                        <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden" id="freshmanSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="images/freshman1.jpg" alt="初入校园1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/freshman2.jpg" alt="初入校园2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/freshman3.jpg" alt="初入校园3" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/freshman4.jpg" alt="初入校园4" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/freshman5.jpg" alt="初入校园5" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('freshmanSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('freshmanSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2021年9月
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间点2 -->
+                <div class="relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 order-2 mt-8 md:mt-0">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden ml-auto" id="studySlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="images/study1.jpg" alt="专业学习1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/study2.jpg" alt="专业学习2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/study3.jpg" alt="专业学习3" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/study4.jpg" alt="专业学习4" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/study5.jpg" alt="专业学习5" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('studySlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('studySlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-secondary z-10 flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa fa-book"></i>
+                        </div>
+                        
+                        <div class="md:w-1/2 md:pl-16 md:text-left order-1">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">专业学习</h3>
+                                <p class="text-white/80">课堂上专注的眼神，图书馆里埋头苦读的身影，实训室里认真操作的态度，我们在知识的海洋中不断探索，为未来打下坚实基础。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2022年3月
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间点3 -->
+                <div class="relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">社团活动</h3>
+                                <p class="text-white/80">学生会、志愿者协会、各种兴趣社团...我们在丰富多彩的课外活动中锻炼能力，结交朋友，收获了课本之外的成长。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-secondary z-10 flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        
+                        <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden" id="clubSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="images/club1.jpg" alt="社团活动1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/club2.jpg" alt="社团活动2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/club3.jpg" alt="社团活动3" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/club4.jpg" alt="社团活动4" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/club5.jpg" alt="社团活动5" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('clubSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('clubSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2022年10月
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间点4 -->
+                <div class="relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 order-2 mt-8 md:mt-0">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden ml-auto" id="internshipSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="images/internship1.jpg" alt="实习实践1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/internship2.jpg" alt="实习实践2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/internship3.jpg" alt="实习实践3" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/internship4.jpg" alt="实习实践4" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/internship5.jpg" alt="实习实践5" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('internshipSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('internshipSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-secondary z-10 flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+                        
+                        <div class="md:w-1/2 md:pl-16 md:text-left order-1">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">实习实践</h3>
+                                <p class="text-white/80">走出校园，踏入企业，我们将所学应用于实践。每一次的实习经历，都是对未来职场的预演，让我们更加明确了自己的方向。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2023年7月
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间点5 -->
+                <div class="relative">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">毕业时刻</h3>
+                                <p class="text-white/80">时光飞逝，转眼就到了毕业的时刻。毕业证书上的名字，学士服上的流苏，都见证了我们的成长。虽然不舍，但我们更期待未来的重逢。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-secondary z-10 flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa fa-certificate"></i>
+                        </div>
+                        
+                        <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden" id="graduationSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="images/graduation1.jpg" alt="毕业时刻1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/graduation2.jpg" alt="毕业时刻2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/graduation3.jpg" alt="毕业时刻3" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/graduation4.jpg" alt="毕业时刻4" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="images/graduation5.jpg" alt="毕业时刻5" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('graduationSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('graduationSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2024年6月
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 青春纪念册 - 固定位置相册 -->
+    <section id="gallery" class="py-20 px-4 bg-gray-50 relative">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4 text-center">青春纪念册</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">一张张照片，记录着我们的青春足迹</p>
+            
+            <div class="relative">
+                <div class="fixed-slider-container mx-auto" style="max-width: 800px;">
+                    <div class="fixed-slider rounded-xl overflow-hidden shadow-xl" id="gallerySlider">
+                        <div class="fixed-slider-item">
+                            <img src="images/memory1.jpg" alt="校园活动1" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory2.jpg" alt="校园活动2" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory3.jpg" alt="校园活动3" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory4.jpg" alt="校园活动4" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory5.jpg" alt="校园活动5" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory6.jpg" alt="校园活动6" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory7.jpg" alt="校园活动7" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory8.jpg" alt="校园活动8" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory9.jpg" alt="校园活动9" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="fixed-slider-item">
+                            <img src="images/memory10.jpg" alt="校园活动10" class="w-full h-96 object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 控制按钮 -->
+                <div class="flex justify-center mt-6 space-x-4">
+                    <button id="galleryPrev" class="bg-primary/80 text-white p-3 rounded-full shadow-lg hover:bg-primary transition-colors" onclick="prevSlide('gallerySlider')">
+                        <i class="fa fa-angle-up text-2xl"></i>
+                    </button>
+                    <button id="galleryNext" class="bg-primary/80 text-white p-3 rounded-full shadow-lg hover:bg-primary transition-colors" onclick="nextSlide('gallerySlider')">
+                        <i class="fa fa-angle-down text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- 图片指示器 -->
+                <div class="flex justify-center mt-4 space-x-2" id="galleryIndicators">
+                    <!-- 指示器将由JS动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">长春职业技术大学商贸学院</h3>
+                    <p class="text-gray-400">地址：吉林省长春市南关区新城大街</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="#" class="text-white hover:text-secondary transition-colors">
+                        <i class="fa fa-weixin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-colors">
+                        <i class="fa fa-weibo text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-colors">
+                        <i class="fa fa-qq text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-secondary transition-colors">
+                        <i class="fa fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 长春职业技术大学商贸学院毕业纪念册 | 青春不散场，我们再相逢</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-primary/95', 'shadow-lg');
+                nav.classList.remove('py-3');
+                nav.classList.add('py-2');
+            } else {
+                nav.classList.remove('bg-primary/95', 'shadow-lg');
+                nav.classList.add('py-3');
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 滑动控制函数
+        function prevSlide(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const firstItem = slider.querySelector('.fixed-slider-item');
+            const itemHeight = firstItem.offsetHeight;
+            const currentScroll = slider.scrollTop;
+            slider.scrollTo({
+                top: currentScroll - itemHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        function nextSlide(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const firstItem = slider.querySelector('.fixed-slider-item');
+            const itemHeight = firstItem.offsetHeight;
+            const currentScroll = slider.scrollTop;
+            slider.scrollTo({
+                top: currentScroll + itemHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // 青春纪念册指示器生成
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('gallerySlider');
+            const items = slider.querySelectorAll('.fixed-slider-item');
+            const indicatorsContainer = document.getElementById('galleryIndicators');
+            
+            // 生成指示器
+            items.forEach((_, index) => {
+                const indicator = document.createElement('button');
+                indicator.className = `gallery-indicator w-3 h-3 rounded-full ${index === 0 ? 'bg-primary' : 'bg-gray-300'}`;
+                indicator.dataset.index = index;
+                indicator.onclick = function() {
+                    const itemHeight = slider.querySelector('.fixed-slider-item').offsetHeight;
+                    slider.scrollTo({
+                        top: index * itemHeight,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新指示器状态
+                    document.querySelectorAll('.gallery-indicator').forEach((ind, i) => {
+                        if (i === index) {
+                            ind.classList.remove('bg-gray-300');
+                            ind.classList.add('bg-primary');
+                        } else {
+                            ind.classList.remove('bg-primary');
+                            ind.classList.add('bg-gray-300');
+                        }
+                    });
+                };
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            // 监听滚动更新指示器
+            slider.addEventListener('scroll', function() {
+                const itemHeight = slider.querySelector('.fixed-slider-item').offsetHeight;
+                const currentIndex = Math.round(this.scrollTop / itemHeight);
+                
+                document.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
