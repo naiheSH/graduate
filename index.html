@@ -112,6 +112,22 @@
                 right: 0;
                 z-index: 50;
             }
+            @media (max-width: 768px) {
+                .timeline-horizontal {
+                    display: flex;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    gap: 1.5rem;
+                    padding-bottom: 2rem;
+                }
+                .timeline-horizontal > .timeline-item {
+                    min-width: 90vw;
+                    scroll-snap-align: center;
+                }
+                .fixed-slider {
+                    height: 200px !important;
+                }
+            }
         }
     </style>
 </head>
@@ -153,44 +169,41 @@
     </div>
 
     <!-- 导航栏（只保留4个链接） -->
-<nav class="transition-all duration-300 bg-transparent backdrop-blur-0" id="mainNav">
-    <div class="flex justify-center space-x-10 py-4">
-        <a href="#intro" class="text-gray-900 hover:text-secondary transition-colors text-lg font-calligraphy">学院寄语</a>
-        <a href="#timeline" class="text-gray-900 hover:text-secondary transition-colors text-lg font-calligraphy">时光轴</a>
-        <a href="#gallery" class="text-gray-900 hover:text-secondary transition-colors text-lg font-calligraphy">青春纪念册</a>
-        <a href="#photos" class="text-gray-900 hover:text-secondary transition-colors text-lg font-calligraphy">校园风采</a>
+<nav class="transition-all duration-300 bg-white/40 backdrop-blur-md" id="mainNav">
+    <div class="flex flex-wrap justify-center space-x-4 sm:space-x-10 py-2 sm:py-4">
+        <a href="#intro" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">学院寄语</a>
+        <a href="#timeline" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">时光轴</a>
+        <a href="#gallery" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">青春纪念册</a>
+        <a href="#photos" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">校园风采</a>
     </div>
 </nav>
 
 <!-- 顶部横幅 -->
-<header class="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+<header class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-8 pb-6">
     <div class="absolute inset-0 z-0">
         <img src="images/1/campus.jpg" alt="校园风景" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-primary/40"></div>
     </div>
-    <div class="relative z-10 text-center px-4">
-        <!-- logo放在标题上方 -->
-        <div class="flex justify-center items-center space-x-6 mb-6">
-            <img src="images/logo/daxue.png" alt="长春职业技术大学" class="h-16 object-contain">
-            <img src="images/logo/mao.png" alt="商贸学院" class="h-16 object-contain">
+    <div class="relative z-10 text-center px-2 w-full max-w-xl mx-auto">
+        <!-- logo放在标题上方，间距更紧凑，适配手机 -->
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-2">
+            <img src="images/logo/daxue.png" alt="长春职业技术大学" class="h-10 sm:h-14 object-contain max-w-[100px] sm:max-w-[150px]">
+            <img src="images/logo/mao.png" alt="商贸学院" class="h-10 sm:h-14 object-contain max-w-[50px] sm:max-w-[80px]">
         </div>
-        <div class="animate-float">
-            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white mb-6 text-shadow-lg font-calligraphy">
-                长春职业技术大学<br><span class="text-secondary">商贸学院</span>
-            </h1>
-        </div>
-        <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-white text-shadow max-w-3xl mx-auto mb-10 animate-[fadeIn_2.5s_ease-in-out]">
+        <h1 class="text-[clamp(1.2rem,5vw,2.2rem)] font-bold text-white mb-2 text-shadow-lg font-calligraphy leading-tight">
+            长春职业技术大学<br><span class="text-secondary">商贸学院</span>
+        </h1>
+        <p class="text-[clamp(0.95rem,3vw,1.2rem)] text-white text-shadow max-w-2xl mx-auto mb-3 animate-[fadeIn_2.5s_ease-in-out]">
             青春不散场 · 梦想正启航
         </p>
         <div class="animate-[fadeInUp_3s_ease-in-out]">
-            <a href="#intro" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            <a href="#intro" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base">
                 开启回忆之旅
             </a>
         </div>
     </div>
-    
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <i class="fa fa-angle-down text-3xl"></i>
+    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <i class="fa fa-angle-down text-2xl"></i>
     </div>
 </header>
 
@@ -246,13 +259,13 @@
     
     <div class="max-w-6xl mx-auto relative z-10">
         <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4 text-center">校园时光轴</h2>
-        <p class="text-white/80 text-center max-w-2xl mx-auto mb-16">那些年，我们一起走过的青春岁月</p>
+        <p class="text-white/80 text-center max-w-2xl mx-auto mb-2">那些年，我们一起走过的青春岁月</p>
+        <p class="block md:hidden text-center text-xs text-white/70 mb-6 animate-pulse">
+            👉 左右滑动查看更多内容
+        </p>
         
-        <div class="relative">
-            <div class="timeline-line"></div>
-            
-            <!-- 时间点1 -->
-            <div class="relative mb-32">
+        <div class="relative timeline-horizontal">
+            <div class="timeline-item relative mb-32">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
                         <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
@@ -275,13 +288,10 @@
                                     <img src="images/freshman2.jpg" alt="初入校园2" class="w-full h-64 object-cover">
                                 </div>
                                 <div class="fixed-slider-item">
-                                    <img src="images/freshman3.jpg" alt="初入校园3" class="w-full h-64 object-cover">
+                                    <img src="images/freshman6.jpg" alt="初入校园6" class="w-full h-64 object-cover">
                                 </div>
                                 <div class="fixed-slider-item">
-                                    <img src="images/freshman4.jpg" alt="初入校园4" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="images/freshman5.jpg" alt="初入校园5" class="w-full h-64 object-cover">
+                                    <img src="images/freshman7.jpg" alt="初入校园7" class="w-full h-64 object-cover">
                                 </div>
                             </div>
                         </div>
@@ -302,7 +312,7 @@
             </div>
             
             <!-- 时间点2 -->
-            <div class="relative mb-32">
+            <div class="timeline-item relative mb-32">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 md:pr-16 order-2 mt-8 md:mt-0">
                         <div class="fixed-slider-container">
@@ -352,7 +362,7 @@
             </div>
             
             <!-- 时间点3 -->
-            <div class="relative mb-32">
+            <div class="timeline-item relative mb-32">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
                         <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
@@ -402,7 +412,7 @@
             </div>
             
             <!-- 时间点4 -->
-            <div class="relative mb-32">
+            <div class="timeline-item relative mb-32">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 md:pr-16 order-2 mt-8 md:mt-0">
                         <div class="fixed-slider-container">
@@ -452,7 +462,7 @@
             </div>
             
             <!-- 时间点5 -->
-            <div class="relative">
+            <div class="timeline-item relative">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
                         <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
