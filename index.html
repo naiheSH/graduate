@@ -132,7 +132,7 @@
     </style>
 </head>
 <body class="bg-neutral font-sans text-gray-800 overflow-x-hidden">
-      <audio id="backgroundMusic" loop autoplay>
+      <audio id="backgroundMusic" loop autoplay preload="auto">
         <source src="mp3/music.mp3" type="audio/mpeg">
     </audio>
     <!-- ...existing code... -->
@@ -154,9 +154,7 @@
             if (audio.paused) {
                 audio.play();
                 icon.classList.add('text-green-400');
-            <audio id="backgroundMusic" loop autoplay preload="auto">
-                <source src="mp3/music.mp3" type="audio/mpeg">
-            </audio>            } else {
+            } else {
                 audio.pause();
                 icon.classList.remove('text-green-400');
             }
