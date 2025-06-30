@@ -154,7 +154,9 @@
             if (audio.paused) {
                 audio.play();
                 icon.classList.add('text-green-400');
-            } else {
+            <audio id="backgroundMusic" loop autoplay preload="auto">
+                <source src="mp3/music.mp3" type="audio/mpeg">
+            </audio>            } else {
                 audio.pause();
                 icon.classList.remove('text-green-400');
             }
