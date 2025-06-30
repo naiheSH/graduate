@@ -132,8 +132,36 @@
     </style>
 </head>
 <body class="bg-neutral font-sans text-gray-800 overflow-x-hidden">
-    <audio id="backgroundMusic" loop preload="auto">
-        <source src="mp3/music.mp3" type="audio/mpeg">
+      <audio id="backgroundMusic" loop autoplay preload="auto">
+        <source src="https://m701.music.126.net/20250630103150/e04ac4e33c811a671b2d355a7d0a62c3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/10452243093/ef64/8013/4ab3/db8b53ebd09455283fb70762be5532b3.mp3?vuutv=wnw2J+OrAKdYyadAiZTju7sAkA9i7S7EJ/+3+T8n+UHE4gT6pS37tdy+3XemCIWIz6fHpmRdRw+uIVfGQIznVzH+0AhgfsNaX5GzAYfBsxp/m+1QiaZIaL1o4Yct8XGMDxm4+G5lPZLuJ3J7ed9nQk9yvF4MhiUmlRsG+wTnnERI5La0SmZybjVyCHXTyQrGV5e8GeFGGo/lnFodl4chJE8ycU8O8s+tdoBQCzaj7GC7AGkwghwGrmhiGLdanBIn9jWLAcpBj02QIzNcJ7gmgnIkZZS7FmvtEeFOSV3GwR8XOfTLwQkLa6xW+58mR9iQ5LIxnkpIBaoKUy/GDwd7hCHJUKv/N8cz4EVBZLiJdAJYmxYNd/VK+jOcPNN4SDcG" type="audio/mpeg">
+    </audio>
+    <!-- ...existing code... -->
+    <script>
+        // ...existing code...
+    
+        // 尝试自动播放音乐
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.play().catch(() => {
+                // 如果自动播放失败，建议提示用户点击右下角音乐按钮开启
+                // alert('浏览器限制自动播放，请点击右下角音乐按钮开启背景音乐');
+            });
+        });
+    
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            const icon = document.getElementById('musicIcon');
+            if (audio.paused) {
+                audio.play();
+                icon.classList.add('text-green-400');
+            } else {
+                audio.pause();
+                icon.classList.remove('text-green-400');
+            }
+        }
+    
+        // ...existing code...
+    </script>
     </audio>
     
     <div class="fixed bottom-6 right-6 z-50 bg-primary/80 text-white p-3 rounded-full shadow-lg cursor-pointer backdrop-blur-md" onclick="toggleMusic()">
@@ -222,6 +250,8 @@
     </div>
 </section>
 
+<!-- 校园时光轴 -->
+<section id="timeline" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
 <!-- 校园时光轴 -->
 <section id="timeline" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full opacity-5">
