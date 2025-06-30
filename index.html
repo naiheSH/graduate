@@ -6,21 +6,20 @@
     <title>长春职业技术大学商贸学院 - 毕业纪念册</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> <!-- 引入书法字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <script>
-        // Tailwind配置
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1E40AF', // 深蓝色作为主色调
-                        secondary: '#F97316', // 橙色作为辅助色
-                        neutral: '#F3F4F6', // 浅灰色作为中性色
-                        accent: '#10B981', // 绿色作为强调色
+                        primary: '#1E40AF',
+                        secondary: '#F97316',
+                        neutral: '#F3F4F6',
+                        accent: '#10B981',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
-                        calligraphy: ['"Ma Shan Zheng"', 'cursive'] // 添加书法字体
+                        calligraphy: ['"Ma Shan Zheng"', 'cursive']
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -53,16 +52,9 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-            .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-            }
+            .content-auto { content-visibility: auto; }
+            .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+            .scrollbar-hide::-webkit-scrollbar { display: none; }
             .timeline-line {
                 position: absolute;
                 left: 50%;
@@ -79,39 +71,21 @@
             .fixed-slider-item {
                 scroll-snap-align: start;
             }
-            .logo-container {
-                transition: all 0.3s ease;
-            }
+            .logo-container { transition: all 0.3s ease; }
             .logo-container:hover {
                 transform: scale(1.05);
                 box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
-            .timeline-date {
-                transition: all 0.3s ease;
-            }
+            .timeline-date { transition: all 0.3s ease; }
             .timeline-date:hover {
                 transform: scale(1.05);
                 background-color: rgba(249, 115, 22, 0.9);
             }
-            .hover-scale {
-                transition: transform 0.5s ease;
-            }
-            .hover-scale:hover {
-                transform: scale(1.05);
-            }
-            .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            }
-            .text-shadow-lg {
-                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-            }
-            .nav-fixed {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 50;
-            }
+            .hover-scale { transition: transform 0.5s ease; }
+            .hover-scale:hover { transform: scale(1.05); }
+            .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+            .text-shadow-lg { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); }
+            .nav-fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
             @media (max-width: 768px) {
                 .timeline-horizontal {
                     display: flex;
@@ -131,315 +105,264 @@
         }
     </style>
     <style>
-        /* 全局圆角 */
-        section, header, footer, nav, .rounded-global {
-            border-radius: 1rem;
-        }
+        section, header, footer, nav, .rounded-global { border-radius: 1rem; }
     </style>
 </head>
 <body class="bg-neutral font-sans text-gray-800 overflow-x-hidden">
-      <audio id="backgroundMusic" loop autoplay preload="auto">
+    <div id="petal-container" style="pointer-events:none;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:999;"></div>
+    <audio id="backgroundMusic" loop autoplay preload="auto">
         <source src="http://music.163.com/song/media/outer/url?id=1879953017.mp3" type="audio/mpeg">
     </audio>
-    <!-- ...existing code... -->
-    <script>
-        // ...existing code...
-    
-        // 尝试自动播放音乐
-        document.addEventListener('DOMContentLoaded', function() {
-            const audio = document.getElementById('backgroundMusic');
-            audio.play().catch(() => {
-                // 如果自动播放失败，建议提示用户点击右下角音乐按钮开启
-                // alert('浏览器限制自动播放，请点击右下角音乐按钮开启背景音乐');
-            });
-        });
-    
-        function toggleMusic() {
-            const audio = document.getElementById('backgroundMusic');
-            const icon = document.getElementById('musicIcon');
-            if (audio.paused) {
-                audio.play();
-                icon.classList.add('text-green-400');
-            } else {
-                audio.pause();
-                icon.classList.remove('text-green-400');
-            }
-        }
-    
-        // ...existing code...
-    </script>
-    </audio>
-    
     <div class="fixed bottom-6 right-6 z-50 bg-primary/80 text-white p-3 rounded-full shadow-lg cursor-pointer backdrop-blur-md" onclick="toggleMusic()">
         <i id="musicIcon" class="fa fa-music text-xl"></i>
     </div>
 
-    <!-- 导航栏（只保留4个链接） -->
-<nav class="transition-all duration-300 bg-white/40 backdrop-blur-md" id="mainNav">
-    <div class="flex flex-wrap justify-center space-x-4 sm:space-x-10 py-2 sm:py-4">
-        <a href="#intro" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">学院寄语</a>
-        <a href="#timeline" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">时光轴</a>
-        <a href="#gallery" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">青春纪念册</a>
-    </div>
-</nav>
-
-<!-- 顶部横幅 -->
-<header class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-8 pb-6">
-    <div class="absolute inset-0 z-0">
-        <img src="https://a1.boltp.com/2025/06/30/68616fb01dbb6.jpg" alt="56242" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-primary/40"></div>
-    </div>
-    <div class="relative z-10 text-center px-2 w-full max-w-xl mx-auto">
-        <!-- logo放在标题上方，间距更紧凑，适配手机 -->
-        <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-2">
-            <img src="https://a1.boltp.com/2025/06/30/686206bddc34b.png" alt="56272" class="h-10 sm:h-14 object-contain max-w-[100px] sm:max-w-[150px]">
-            <img src="https://a1.boltp.com/2025/06/30/686206afd71a5.png" alt="56270"  class="h-10 sm:h-14 object-contain max-w-[50px] sm:max-w-[80px]">
+    <!-- 导航栏 -->
+    <nav class="transition-all duration-300 bg-white/40 backdrop-blur-md" id="mainNav">
+        <div class="flex flex-wrap justify-center space-x-4 sm:space-x-10 py-2 sm:py-4">
+            <a href="#intro" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">学院寄语</a>
+            <a href="#timeline" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">时光轴</a>
+            <a href="#gallery" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">青春纪念册</a>
         </div>
-        <h1 class="text-[clamp(1.2rem,5vw,2.2rem)] font-bold text-white mb-2 text-shadow-lg font-calligraphy leading-tight">
-            长春职业技术大学<br><span class="text-secondary">商贸学院</span>
-        </h1>
-        <p class="text-[clamp(0.95rem,3vw,1.2rem)] text-white text-shadow max-w-2xl mx-auto mb-3 animate-[fadeIn_2.5s_ease-in-out]">
-            青春不散场 · 梦想正启航
-        </p>
-        <div class="animate-[fadeInUp_3s_ease-in-out]">
-            <a href="#intro" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base">
-                开启回忆之旅
-            </a>
-        </div>
-    </div>
-    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <i class="fa fa-angle-down text-2xl"></i>
-    </div>
-</header>
+    </nav>
 
-<!-- 学院寄语 -->
-<section id="intro" class="py-20 px-4 bg-white relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full opacity-5">
-        <div class="absolute top-10 left-10 w-64 h-64 rounded-full bg-primary/30 animate-float"></div>
-        <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-secondary/30 animate-float-delay-2"></div>
-    </div>
-    
-    <div class="max-w-6xl mx-auto relative z-10">
-        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-12 text-center">学院寄语</h2>
-        
-        <div class="flex flex-col md:flex-row items-center gap-10">
-            <div class="md:w-1/2">
-                <div class="relative">
-                   <img src="https://a1.boltp.com/2025/06/30/6861ff50e07d0.jpg" alt="56268" class="w-full h-auto rounded-xl shadow-xl hover-
-                    <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg animate-float-delay-1">
+    <!-- 顶部横幅 -->
+    <header class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-8 pb-6">
+        <div class="absolute inset-0 z-0">
+            <img src="https://a1.boltp.com/2025/06/30/68616fb01dbb6.jpg" alt="56242" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-primary/40"></div>
+        </div>
+        <div class="relative z-10 text-center px-2 w-full max-w-xl mx-auto">
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-2">
+                <img src="https://a1.boltp.com/2025/06/30/686206bddc34b.png" alt="56272" class="h-10 sm:h-14 object-contain max-w-[100px] sm:max-w-[150px]">
+                <img src="https://a1.boltp.com/2025/06/30/686206afd71a5.png" alt="56270"  class="h-10 sm:h-14 object-contain max-w-[50px] sm:max-w-[80px]">
+            </div>
+            <h1 class="text-[clamp(1.2rem,5vw,2.2rem)] font-bold text-white mb-2 text-shadow-lg font-calligraphy leading-tight">
+                长春职业技术大学<br><span class="text-secondary">商贸学院</span>
+            </h1>
+            <p class="text-[clamp(0.95rem,3vw,1.2rem)] text-white text-shadow max-w-2xl mx-auto mb-3 animate-[fadeIn_2.5s_ease-in-out]">
+                青春不散场 · 梦想正启航
+            </p>
+            <div class="animate-[fadeInUp_3s_ease-in-out]">
+                <a href="#intro" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base">
+                    开启回忆之旅
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fa fa-angle-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- 学院寄语 -->
+    <section id="intro" class="py-20 px-4 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-10 left-10 w-64 h-64 rounded-full bg-primary/30 animate-float"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-secondary/30 animate-float-delay-2"></div>
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-12 text-center">学院寄语</h2>
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="https://a1.boltp.com/2025/06/30/6861ff50e07d0.jpg" alt="56268" class="w-full h-auto rounded-xl shadow-xl hover-scale">
+                        <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg animate-float-delay-1"></div>
                     </div>
                 </div>
-            </div>
-            <div class="md:w-1/2">
-                <div class="bg-neutral p-8 rounded-xl shadow-lg">
-                    <p class="text-lg mb-6 leading-relaxed font-calligraphy text-xl">
-                        亲爱的同学们，当你们翻开这本纪念册时，相信心中一定充满了不舍与憧憬。在长春职业技术大学商贸学院的这段时光，是你们青春中最宝贵的记忆。
-                    </p>
-                    <p class="text-lg mb-6 leading-relaxed font-calligraphy text-xl">
-                        在这里，你们不仅收获了知识，更结识了志同道合的伙伴，经历了成长与蜕变。课堂上的专注、运动场上的拼搏、社团活动中的欢笑，都将成为你们人生中珍贵的片段。
-                    </p>
-                    <p class="text-lg leading-relaxed font-calligraphy text-xl">
-                        毕业不是结束，而是新的开始。愿你们带着在商贸学院学到的智慧与勇气，在人生的新征程上勇往直前，创造属于自己的辉煌！母校永远是你们的后盾，欢迎常回家看看。
-                    </p>
-                    <div class="mt-8 flex justify-end">
-                        <div class="text-right">
-                            <div class="text-primary font-semibold">—— 长春职业技术大学商贸学院 全体老师</div>
+                <div class="md:w-1/2">
+                    <div class="bg-neutral p-8 rounded-xl shadow-lg">
+                        <p class="text-lg mb-6 leading-relaxed font-calligraphy text-xl indent-8">
+                            亲爱的同学们，当你们翻开这本纪念册时，相信心中一定充满了不舍与憧憬。在长春职业技术大学商贸学院的这段时光，是你们青春中最宝贵的记忆。
+                        </p>
+                        <p class="text-lg mb-6 leading-relaxed font-calligraphy text-xl indent-8">
+                            在这里，你们不仅收获了知识，更结识了志同道合的伙伴，经历了成长与蜕变。课堂上的专注、运动场上的拼搏、社团活动中的欢笑，都将成为你们人生中珍贵的片段。
+                        </p>
+                        <p class="text-lg leading-relaxed font-calligraphy text-xl indent-8">
+                            毕业不是结束，而是新的开始。愿你们带着在商贸学院学到的智慧与勇气，在人生的新征程上勇往直前，创造属于自己的辉煌！母校永远是你们的后盾，欢迎常回家看看。
+                        </p>
+                        <div class="mt-8 flex justify-end">
+                            <div class="text-right">
+                                <div class="text-primary font-semibold">—— 长春职业技术大学商贸学院 全体老师</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- 校园时光轴 -->
-<section id="timeline" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
-<!-- 校园时光轴 -->
-<section id="timeline" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full opacity-5">
-        <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-white/30 animate-float"></div>
-        <div class="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-white/30 animate-float-delay-2"></div>
-    </div>
-    
-    <div class="max-w-6xl mx-auto relative z-10">
-        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4 text-center">校园时光轴</h2>
-        <p class="text-white/80 text-center max-w-2xl mx-auto mb-2">那些年，我们一起走过的青春岁月</p>
-        <p class="block md:hidden text-center text-xs text-white/70 mb-6 animate-pulse">
-            👉 左右滑动查看更多内容
-        </p>
-        
-        <div class="relative timeline-horizontal">
-            <!-- 时间点1 -->
-            <div class="timeline-item relative mb-32">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
-                        <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
-                            <h3 class="text-2xl font-bold mb-2">初入校园</h3>
-                            <p class="text-white/80">带着憧憬与忐忑，我们来到了长春职业技术大学，开始了大学生涯。军训的汗水，迎新晚会的热闹，都成为了难忘的回忆。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
-                        <div class="fixed-slider-container">
-                            <div class="fixed-slider rounded-lg overflow-hidden" id="freshmanSlider">
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/686207e545379.JPG" alt="56273" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/6862089f34a18.jpg" alt="56274" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/6862089f40cf1.jpg" alt="56275" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                 <img src="https://a1.boltp.com/2025/06/30/6862089f3d945.jpg" alt="56278" class="w-full h-64 object-cover">
-                                </div>
+    <!-- 校园时光轴 -->
+    <section id="timeline" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-white/30 animate-float"></div>
+            <div class="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-white/30 animate-float-delay-2"></div>
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4 text-center">校园时光轴</h2>
+            <p class="text-white/80 text-center max-w-2xl mx-auto mb-2">那些年，我们一起走过的青春岁月</p>
+            <p class="block md:hidden text-center text-xs text-white/70 mb-6 animate-pulse">
+                👉 左右滑动查看更多内容
+            </p>
+            <div class="relative timeline-horizontal">
+                <!-- 时间点1 -->
+                <div class="timeline-item relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">初入校园</h3>
+                                <p class="text-white/80">带着憧憬与忐忑，我们来到了长春职业技术大学，开始了大学生涯。军训的汗水，迎新晚会的热闹，都成为了难忘的回忆。</p>
                             </div>
                         </div>
-                        <div class="flex justify-center mt-4 space-x-2">
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('freshmanSlider')">
-                                <i class="fa fa-angle-up"></i>
-                            </button>
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('freshmanSlider')">
-                                <i class="fa fa-angle-down"></i>
-                            </button>
+                        <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden" id="freshmanSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/686207e545379.JPG" alt="56273" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/6862089f34a18.jpg" alt="56274" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/6862089f40cf1.jpg" alt="56275" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/6862089f3d945.jpg" alt="56278" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('freshmanSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('freshmanSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
-                        2021年9月
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2021年9月
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 时间点2 -->
-            <div class="timeline-item relative mb-32">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-16 order-2 mt-8 md:mt-0">
-                        <div class="fixed-slider-container">
-                            <div class="fixed-slider rounded-lg overflow-hidden ml-auto" id="studySlider">
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/6862098acc09d.jpg" alt="56280" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/6862098ad900f.JPG" alt="56281" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620a5eb643b.jpg" alt="56283" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620aedc26fc.jpg" alt="56284" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620b6a520cd.jpg" alt="56285" class="w-full h-64 object-cover">
+                <!-- 时间点2 -->
+                <div class="timeline-item relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 order-2 mt-8 md:mt-0">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden ml-auto" id="studySlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/6862098acc09d.jpg" alt="56280" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/6862098ad900f.JPG" alt="56281" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620a5eb643b.jpg" alt="56283" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620aedc26fc.jpg" alt="56284" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620b6a520cd.jpg" alt="56285" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
                                 </div>
                             </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('studySlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('studySlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="flex justify-center mt-4 space-x-2">
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('studySlider')">
-                                <i class="fa fa-angle-up"></i>
-                            </button>
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('studySlider')">
-                                <i class="fa fa-angle-down"></i>
-                            </button>
+                        <div class="md:w-1/2 md:pl-16 md:text-left order-1">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">专业学习</h3>
+                                <p class="text-white/80">课堂上专注的眼神，图书馆里埋头苦读的身影，实训室里认真操作的态度，我们在知识的海洋中不断探索，为未来打下坚实基础。</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 md:pl-16 md:text-left order-1">
-                        <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
-                            <h3 class="text-2xl font-bold mb-2">专业学习</h3>
-                            <p class="text-white/80">课堂上专注的眼神，图书馆里埋头苦读的身影，实训室里认真操作的态度，我们在知识的海洋中不断探索，为未来打下坚实基础。</p>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            2022年3月
                         </div>
-                    </div>
-                    
-                    <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
-                        2022年3月
                     </div>
                 </div>
-            </div>
-            
-            <!-- 时间点3 -->
-            <div class="timeline-item relative mb-32">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
-                        <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
-                            <h3 class="text-2xl font-bold mb-2">社团活动</h3>
-                            <p class="text-white/80">学生会、志愿者协会、各种兴趣社团...我们在丰富多彩的课外活动中锻炼能力，结交朋友，收获了课本之外的成长。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
-                        <div class="fixed-slider-container">
-                            <div class="fixed-slider rounded-lg overflow-hidden" id="clubSlider">
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620bf25354c.jpg" alt="56287" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620bf284f1b.JPG" alt="56288" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620bf289a90.JPG" alt="56286" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620c8761554.JPG" alt="56289" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620c8785380.jpg" alt="56291" class="w-full h-64 object-cover">
-                                </div>
+                <!-- 时间点3 -->
+                <div class="timeline-item relative mb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">社团活动</h3>
+                                <p class="text-white/80">学生会、志愿者协会、各种兴趣社团...我们在丰富多彩的课外活动中锻炼能力，结交朋友，收获了课本之外的成长。</p>
                             </div>
                         </div>
-                        <div class="flex justify-center mt-4 space-x-2">
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('clubSlider')">
-                                <i class="fa fa-angle-up"></i>
-                            </button>
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('clubSlider')">
-                                <i class="fa fa-angle-down"></i>
-                            </button>
+                        <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden" id="clubSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620bf25354c.jpg" alt="56287" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620bf284f1b.JPG" alt="56288" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620bf289a90.JPG" alt="56286" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620c8761554.JPG" alt="56289" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620c8785380.jpg" alt="56291" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('clubSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('clubSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            
-            <!-- 时间点5 -->
-            <div class="timeline-item relative">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
-                        <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
-                            <h3 class="text-2xl font-bold mb-2">毕业时刻</h3>
-                            <p class="text-white/80">时光飞逝，转眼就到了毕业的时刻。毕业证书上的名字，学士服上的流苏，都见证了我们的成长。虽然不舍，但我们更期待未来的重逢。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
-                        <div class="fixed-slider-container">
-                            <div class="fixed-slider rounded-lg overflow-hidden" id="graduationSlider">
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620db22df58.JPG" alt="56293" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620db225e71.JPG" alt="56292" class="w-full h-64 object-cover">
-                                </div>
-                                <div class="fixed-slider-item">
-                                    <img src="https://a1.boltp.com/2025/06/30/68620db23b12a.JPG" alt="56295" class="w-full h-64 object-cover">
-                                </div>
-
+                <!-- 时间点5 -->
+                <div class="timeline-item relative">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
+                            <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold mb-2">毕业时刻</h3>
+                                <p class="text-white/80">时光飞逝，转眼就到了毕业的时刻。毕业证书上的名字，学士服上的流苏，都见证了我们的成长。虽然不舍，但我们更期待未来的重逢。</p>
                             </div>
                         </div>
-                        <div class="flex justify-center mt-4 space-x-2">
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('graduationSlider')">
-                                <i class="fa fa-angle-up"></i>
-                            </button>
-                            <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('graduationSlider')">
-                                <i class="fa fa-angle-down"></i>
-                            </button>
+                        <div class="md:w-1/2 md:pl-16 order-1 md:order-2">
+                            <div class="fixed-slider-container">
+                                <div class="fixed-slider rounded-lg overflow-hidden" id="graduationSlider">
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620db22df58.JPG" alt="56293" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620db225e71.JPG" alt="56292" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
+                                        <img src="https://a1.boltp.com/2025/06/30/68620db23b12a.JPG" alt="56295" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="prevSlide('graduationSlider')">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="bg-secondary/70 hover:bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="nextSlide('graduationSlider')">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -451,7 +374,6 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4 text-center">青春纪念册</h2>
             <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">一张张照片，记录着我们的青春足迹</p>
-            
             <div class="relative">
                 <div class="fixed-slider-container mx-auto" style="max-width: 800px;">
                     <div class="fixed-slider rounded-xl overflow-hidden shadow-xl" id="gallerySlider">
@@ -462,7 +384,7 @@
                             <img src="https://a1.boltp.com/2025/06/30/686211f9a4c28.jpg" alt="56298" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
                         <div class="fixed-slider-item">
-                            <img src="https://a1.boltp.com/2025/06/30/686211f9a375f.jpg" alt="56297" cclass="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                            <img src="https://a1.boltp.com/2025/06/30/686211f9a375f.jpg" alt="56297" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
                         <div class="fixed-slider-item">
                             <img src="https://a1.boltp.com/2025/06/30/68621264a1cab.jpg" alt="56307" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
@@ -471,15 +393,13 @@
                             <img src="https://a1.boltp.com/2025/06/30/6862126295de5.jpg" alt="56306" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
                         <div class="fixed-slider-item">
-                           <img src="https://a1.boltp.com/2025/06/30/686212626e9e5.jpg" alt="56304" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                            <img src="https://a1.boltp.com/2025/06/30/686212626e9e5.jpg" alt="56304" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
                         <div class="fixed-slider-item">
-                          <img src="https://a1.boltp.com/2025/06/30/6862126257ffd.jpg" alt="56302" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                            <img src="https://a1.boltp.com/2025/06/30/6862126257ffd.jpg" alt="56302" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
-  
                     </div>
                 </div>
-                
                 <!-- 控制按钮 -->
                 <div class="flex justify-center mt-6 space-x-4">
                     <button id="galleryPrev" class="bg-primary/80 text-white p-3 rounded-full shadow-lg hover:bg-primary transition-colors" onclick="prevSlide('gallerySlider')">
@@ -489,7 +409,6 @@
                         <i class="fa fa-angle-down text-2xl"></i>
                     </button>
                 </div>
-                
                 <!-- 图片指示器 -->
                 <div class="flex justify-center mt-4 space-x-2" id="galleryIndicators">
                     <!-- 指示器将由JS动态生成 -->
@@ -499,36 +418,98 @@
     </section>
 
     <!-- 页脚 -->
-                <footer class="bg-gray-800/60 backdrop-blur-md text-white py-12 px-4">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-8 md:mb-0 w-full">
-                <h3 class="text-2xl font-bold mb-2 text-center text-white font-calligraphy">
-                    长春职业技术大学商贸学院
-                </h3>
-                <p class="text-gray-400 text-center">吉林省长春市南关区卫星路3278号</p>
+    <footer class="bg-gray-800/60 backdrop-blur-md text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 w-full">
+                    <h3 class="text-2xl font-bold mb-2 text-center text-white font-calligraphy">
+                        长春职业技术大学商贸学院
+                    </h3>
+                    <p class="text-gray-400 text-center">吉林省长春市南关区卫星路3278号</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs sm:text-base leading-relaxed break-words">
+                <p class="mb-1 font-calligraphy text-white">
+                    &copy; 青春不散场，我们再相逢 
+                </p>
+                <p class="mb-1 font-calligraphy text-white">
+                    &copy; 长春职业技术大学商贸学院 
+                </p>
+                <p class="mb-1 font-calligraphy text-white">
+                    &copy; 长春职业技术大学 商贸学院 学生科团委 数字媒体部 著
+                </p>
+                <p class="mb-1 font-calligraphy text-white">
+                    &copy;数字媒体部 王棋正 李建军 周禹男 王雪慧 著
+                </p>
+                <p class="mb-1 font-calligraphy text-white">
+                    &copy;鸣谢所有老师与同学们的支持与帮助
+                </p>
             </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs sm:text-base leading-relaxed break-words">
-            <p class="mb-1 font-calligraphy text-white">
-                &copy; 青春不散场，我们再相逢 
-            </p>
-            <p class="mb-1 font-calligraphy text-white">
-                &copy; 长春职业技术大学商贸学院 
-            </p>
-            <p class="mb-1 font-calligraphy text-white">
-                &copy; 长春职业技术大学 商贸学院 学生科团委 数字媒体部 著
-            </p>
-            <p class="mb-1 font-calligraphy text-white">
-                &copy;数字媒体部 王棋正 李建军 周禹男 王雪慧 著
-            </p>
-            <p class="mb-1 font-calligraphy text-white">
-                &copy;鸣谢所有老师与同学们的支持与帮助
-            </p>
-        </div>
-    </div>
-</footer>
+    </footer>
     <script>
+        // 花瓣动效（更自然+数量多）
+        function createPetal() {
+            const petal = document.createElement('div');
+            const size = Math.random() * 18 + 18;
+            const rotate = Math.random() * 360;
+            const duration = Math.random() * 5 + 8; // 8~13秒
+            const translateX = (Math.random() - 0.5) * 120;
+            const colors = [
+                'url(#petalGradient1)', 'url(#petalGradient2)', 'url(#petalGradient3)'
+            ];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            petal.style.position = 'absolute';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-40px';
+            petal.style.width = size + 'px';
+            petal.style.height = size + 'px';
+            petal.style.pointerEvents = 'none';
+            petal.style.opacity = Math.random() * 0.4 + 0.6;
+            petal.style.zIndex = 999;
+            petal.style.transform = `rotate(${rotate}deg)`;
+
+            petal.innerHTML = `
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <defs>
+                <linearGradient id="petalGradient1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#f9a8d4"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+                <linearGradient id="petalGradient2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#fbcfe8"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+                <linearGradient id="petalGradient3" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#f9a8d4"/>
+                  <stop offset="1" stop-color="#fda4af"/>
+                </linearGradient>
+              </defs>
+              <path d="M16 2C13 8 2 13 2 20c0 6 6 10 14 10s14-4 14-10c0-7-11-12-14-18z" fill="${color}"/>
+            </svg>
+            `;
+
+            document.getElementById('petal-container').appendChild(petal);
+
+            petal.animate([
+                { transform: `rotate(${rotate}deg) translateY(0) translateX(0)` },
+                { transform: `rotate(${rotate + 180}deg) translateY(90vh) translateX(${translateX}px)` }
+            ], {
+                duration: duration * 1000,
+                easing: 'linear'
+            });
+
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(() => {
+            createPetal();
+            createPetal();
+        }, 200); // 每0.2秒生成2个花瓣
+
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('mainNav');
@@ -544,10 +525,11 @@
         });
 
         // 移动端菜单切换
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        // 若无menuBtn可忽略
+        // document.getElementById('menuBtn').addEventListener('click', function() {
+        //     const mobileMenu = document.getElementById('mobileMenu');
+        //     mobileMenu.classList.toggle('hidden');
+        // });
 
         // 滑动控制函数
         function prevSlide(sliderId) {
@@ -577,8 +559,6 @@
             const slider = document.getElementById('gallerySlider');
             const items = slider.querySelectorAll('.fixed-slider-item');
             const indicatorsContainer = document.getElementById('galleryIndicators');
-            
-            // 生成指示器
             items.forEach((_, index) => {
                 const indicator = document.createElement('button');
                 indicator.className = `gallery-indicator w-3 h-3 rounded-full ${index === 0 ? 'bg-primary' : 'bg-gray-300'}`;
@@ -589,8 +569,6 @@
                         top: index * itemHeight,
                         behavior: 'smooth'
                     });
-                    
-                    // 更新指示器状态
                     document.querySelectorAll('.gallery-indicator').forEach((ind, i) => {
                         if (i === index) {
                             ind.classList.remove('bg-gray-300');
@@ -603,12 +581,9 @@
                 };
                 indicatorsContainer.appendChild(indicator);
             });
-            
-            // 监听滚动更新指示器
             slider.addEventListener('scroll', function() {
                 const itemHeight = slider.querySelector('.fixed-slider-item').offsetHeight;
                 const currentIndex = Math.round(this.scrollTop / itemHeight);
-                
                 document.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
                     if (index === currentIndex) {
                         indicator.classList.remove('bg-gray-300');
@@ -619,6 +594,24 @@
                     }
                 });
             });
+        });
+
+        // 音乐播放控制
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            const icon = document.getElementById('musicIcon');
+            if (audio.paused) {
+                audio.play();
+                icon.classList.add('text-green-400');
+            } else {
+                audio.pause();
+                icon.classList.remove('text-green-400');
+            }
+        }
+        // 自动播放音乐
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.play().catch(() => {});
         });
     </script>
 </body>
