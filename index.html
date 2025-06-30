@@ -130,6 +130,12 @@
             }
         }
     </style>
+    <style>
+        /* 全局圆角 */
+        section, header, footer, nav, .rounded-global {
+            border-radius: 1rem;
+        }
+    </style>
 </head>
 <body class="bg-neutral font-sans text-gray-800 overflow-x-hidden">
       <audio id="backgroundMusic" loop autoplay preload="auto">
@@ -174,7 +180,6 @@
         <a href="#intro" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">学院寄语</a>
         <a href="#timeline" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">时光轴</a>
         <a href="#gallery" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">青春纪念册</a>
-        <a href="#photos" class="text-gray-900 hover:text-secondary transition-colors text-base sm:text-lg font-calligraphy">校园风采</a>
     </div>
 </nav>
 
@@ -241,7 +246,6 @@
                     <div class="mt-8 flex justify-end">
                         <div class="text-right">
                             <div class="text-primary font-semibold">—— 长春职业技术大学商贸学院 全体老师</div>
-                            <div class="text-gray-500 text-sm mt-1">2024年6月</div>
                         </div>
                     </div>
                 </div>
@@ -508,7 +512,6 @@
                     </div>
                     
                     <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
-                        2024年6月
                     </div>
                 </div>
             </div>
@@ -576,36 +579,35 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">长春职业技术大学商贸学院</h3>
-                    <p class="text-gray-400">地址：吉林省长春市南关区新城大街</p>
-                </div>
-                
-                <div class="flex gap-6">
-                    <a href="#" class="text-white hover:text-secondary transition-colors">
-                        <i class="fa fa-weixin text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-secondary transition-colors">
-                        <i class="fa fa-weibo text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-secondary transition-colors">
-                        <i class="fa fa-qq text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-secondary transition-colors">
-                        <i class="fa fa-envelope text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 长春职业技术大学商贸学院毕业纪念册 | 青春不散场，我们再相逢</p>
+                <footer class="bg-gray-800/60 backdrop-blur-md text-white py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-8 md:mb-0 w-full">
+                <h3 class="text-2xl font-bold mb-2 text-center text-white font-calligraphy">
+                    长春职业技术大学商贸学院
+                </h3>
+                <p class="text-gray-400 text-center">吉林省长春市南关区新城大街</p>
             </div>
         </div>
-    </footer>
-
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs sm:text-base leading-relaxed break-words">
+            <p class="mb-1 font-calligraphy text-white">
+                &copy; 青春不散场，我们再相逢 
+            </p>
+            <p class="mb-1 font-calligraphy text-white">
+                &copy; 长春职业技术大学商贸学院 
+            </p>
+            <p class="mb-1 font-calligraphy text-white">
+                &copy; 长春职业技术大学 商贸学院 学生科团委 数字媒体部 著
+            </p>
+            <p class="mb-1 font-calligraphy text-white">
+                &copy;数字媒体部 王棋正 李建军 周禹男 王雪慧 著
+            </p>
+            <p class="mb-1 font-calligraphy text-white">
+                &copy;鸣谢所有老师与同学们的支持与帮助
+            </p>
+        </div>
+    </div>
+</footer>
     <script>
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
