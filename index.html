@@ -241,8 +241,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
-                        </div>
+
                     </div>
                 </div>
                 <!-- 时间点2 -->
@@ -285,7 +284,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
+                        
                     
                         </div>
                     </div>
@@ -341,9 +340,6 @@
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
-                        </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
-                        </div>
                     </div>
                 </div>
                 <!-- 时间点5 -->
@@ -389,8 +385,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-6 timeline-date bg-secondary text-white text-sm font-bold px-3 py-1 rounded-full">
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -584,6 +579,14 @@
             createPetal();
         }, 200); // 每0.2秒生成2个花瓣
 
+        // 图片预加载函数
+        function preloadImages(urls) {
+            urls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('mainNav');
@@ -630,6 +633,64 @@
 
         // 青春纪念册指示器生成
         document.addEventListener('DOMContentLoaded', function() {
+            // 预加载所有图片
+            const galleryImages = [
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/55/MTAwMTIyXzE3NTEzNDU3MjMzMzU=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/56/MTAwMTIyXzE3NTEzNDU3NjcyMzE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5NTQ2Njg=.JPG",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5NjQzMTc=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5Njg5NjA=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5NzM2MTk=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5NzY0MDA=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5ODE5ODE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5ODYwOTk=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5ODgxNjc=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5OTM4NDM=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5OTc0NzE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/13/0/MTAwMTIyXzE3NTEzNDYwMDIzNjM=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/13/0/MTAwMTIyXzE3NTEzNDYwMjY5NDQ=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/13/0/MTAwMTIyXzE3NTEzNDYwMjg0Mjk=.jpg"
+            ];
+            const freshmanImages = [
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/6/30/23/22/MTAwMTIyXzE3NTEyOTY5MzgzMDc=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/6/30/23/23/MTAwMTIyXzE3NTEyOTcwMDgwODg=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/33/MTAwMTIyXzE3NTEzNDQzODg3NjQ=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/35/MTAwMTIyXzE3NTEzNDQ1MDU2MTE=.jpg"
+            ];
+            const studyImages = [
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/36/MTAwMTIyXzE3NTEzNDQ1OTY0Mjg=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/38/MTAwMTIyXzE3NTEzNDQ2ODM0NTE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/39/MTAwMTIyXzE3NTEzNDQ3NzE3MDQ=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/40/MTAwMTIyXzE3NTEzNDQ4MTQ5Nzg=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/41/MTAwMTIyXzE3NTEzNDQ4NjU5ODk=.jpg"
+            ];
+            const clubImages = [
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/41/MTAwMTIyXzE3NTEzNDQ5MDcwMjc=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/42/MTAwMTIyXzE3NTEzNDQ5NTg4MDM=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/43/MTAwMTIyXzE3NTEzNDQ5OTMzNDc=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/44/MTAwMTIyXzE3NTEzNDUwNTE4NTk=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/44/MTAwMTIyXzE3NTEzNDUwOTI5NzE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/47/MTAwMTIyXzE3NTEzNDUyMjUxNjk=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/47/MTAwMTIyXzE3NTEzNDUyNzg5Mzk=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/48/MTAwMTIyXzE3NTEzNDUzMzMzOTY=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/49/MTAwMTIyXzE3NTEzNDUzOTk4ODc=.jpg"
+            ];
+            const graduationImages = [
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/51/MTAwMTIyXzE3NTEzNDU0Njk1MTE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/51/MTAwMTIyXzE3NTEzNDU1MDIxNzI=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/52/MTAwMTIyXzE3NTEzNDU1MzU3NTY=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/52/MTAwMTIyXzE3NTEzNDU1Njc0NTE=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/53/MTAwMTIyXzE3NTEzNDU2MDgzODI=.jpg",
+                "https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/54/MTAwMTIyXzE3NTEzNDU2NjMwMjU=.jpg"
+            ];
+            preloadImages([
+                ...galleryImages,
+                ...freshmanImages,
+                ...studyImages,
+                ...clubImages,
+                ...graduationImages
+            ]);
+            // ...existing 指示器生成代码
             const slider = document.getElementById('gallerySlider');
             const items = slider.querySelectorAll('.fixed-slider-item');
             const indicatorsContainer = document.getElementById('galleryIndicators');
