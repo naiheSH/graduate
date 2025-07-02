@@ -369,6 +369,9 @@
                                         <img src="https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/52/MTAwMTIyXzE3NTEzNDU1Njc0NTE=.jpg" alt="56330" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                                     </div>
                                     <div class="fixed-slider-item">
+                                        <img src="https://e3f49eaa46b57.cdn.sohucs.com/2025/7/2/19/30/MTAwMTIyXzE3NTE0NTU4MDE4MjE=.jpg" alt="56330" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
+                                    </div>
+                                    <div class="fixed-slider-item">
                                         <img src="https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/53/MTAwMTIyXzE3NTEzNDU2MDgzODI=.jpg" alt="56292" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                                     </div>
                                     <div class="fixed-slider-item">
@@ -428,9 +431,6 @@
                             <img src="https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5ODYwOTk=.jpg" alt="56302" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
                         <div class="fixed-slider-item">
-                            <img src="https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5ODgxNjc=.jpg" alt="56302" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
-                        </div>
-                         <div class="fixed-slider-item">
                             <img src="https://e3f49eaa46b57.cdn.sohucs.com/2025/7/1/12/59/MTAwMTIyXzE3NTEzNDU5OTM4NDM=.jpg" alt="56302" class="max-h-[400px] h-auto max-w-full object-contain mx-auto">
                         </div>
                         <div class="fixed-slider-item">
@@ -466,7 +466,7 @@
         <div class="flex flex-col items-center">
             <!-- 标题在图片上方 -->
             <div class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition-all duration-300">
-                2025年毕业典礼祝福篇商贸学院舞蹈
+                2025年毕业典礼祝福篇商贸舞蹈
             </div>
             <div class="text-xl sm:text-2xl font-bold text-secondary mb-4 text-center">
                 点击图片观看
@@ -507,6 +507,9 @@
                 </p>
                 <p class="mb-1 font-calligraphy text-white">
                     &copy;鸣谢所有老师与同学们的支持与帮助
+                </p>
+                 <p class="mb-1 font-calligraphy text-white">
+                    &copy;特别鸣谢 @陪伴
                 </p>
             </div>
         </div>
@@ -743,6 +746,91 @@
             const audio = document.getElementById('backgroundMusic');
             audio.play().catch(() => {});
         });
+
+        // 优化的懒加载函数
+function lazyLoad() {
+    const images = document.querySelectorAll('img[data-src]:not(.loaded)');
+    const imageOptions = {
+        root: null,
+        rootMargin: '50px 0px',
+        threshold: 0.1
+    };
+
+    const loadImage = (image) => {
+        if (!image.src && image.dataset.src) {
+            image.src = image.dataset.src;
+            image.onload = () => {
+                image.classList.add('loaded');
+                if (image.parentElement) {
+                    image.parentElement.classList.add('is-loaded');
+                }
+            };
+        }
+    };
+
+    const handleIntersection = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadImage(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const imageObserver = new IntersectionObserver(handleIntersection, imageOptions);
+
+    images.forEach(img => {
+        // 如果图片在首屏，立即加载
+        if (isInViewport(img)) {
+            loadImage(img);
+        } else {
+            imageObserver.observe(img);
+        }
+    });
+}
+
+// 检查元素是否在视口内
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top < window.innerHeight && rect.bottom > 0 &&
+        rect.left < window.innerWidth && rect.right > 0
+    );
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    // 替换所有图片为懒加载
+    document.querySelectorAll('img').forEach(img => {
+        if (img.src && !img.classList.contains('no-lazy')) {
+            img.dataset.src = img.src;
+            img.removeAttribute('src');
+            img.classList.add('lazy-image');
+        }
+    });
+
+    // 执行懒加载
+    lazyLoad();
+
+    // 自动播放背景音乐优化
+    const audio = document.getElementById('backgroundMusic');
+    if (audio) {
+        audio.play().catch(() => {
+            document.addEventListener('click', function playOnClick() {
+                audio.play().then(() => {
+                    document.removeEventListener('click', playOnClick);
+                });
+            }, { once: true });
+        });
+    }
+
+    // 监听滚动事件，动态加载新出现的图片
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(lazyLoad, 100);
+    });
+});
     </script>
 </body>
 </html>
